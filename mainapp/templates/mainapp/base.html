@@ -42,8 +42,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item  text-white" href="#">Доставка и оплата</a></li>
-                                <li><a class="dropdown-item  text-white" href="#">Контактная информация</a></li>
-                                <li><a class="dropdown-item  text-white" href="{% url "mainapp:about" %}">Про нас</a></li>
+                                <li><a class="dropdown-item  text-white" href="{% url "mainapp:about" %}">О нас</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -90,9 +89,13 @@
                             height="16">
                     </button>
                     <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-                        
-                        
-                        
+                        <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">Все товары</a></li>
+                        <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">Обувь</a></li>
+                        <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">Одежда</a></li>
+                        <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">Товары для детей</a></li>
+                        <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">Тренажеры</a></li>
+                        <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">Фитнес</a></li>
+                        <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">Аксессуары</a></li>
                     </ul>
                 </div>
                 <!-- Значек корзины, вызывает модальное окно -->

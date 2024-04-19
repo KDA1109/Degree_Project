@@ -3,7 +3,7 @@ from django.shortcuts import render
 def index(request):
     context = {
         'title': 'SportHub - Главная',
-        'content': 'Главная стрница магазина - SportHub'
+        'content': 'Спорт - наше всё! SportHub знает об этом лучше всех!'
     }
 
     return render(request, 'mainapp/index.html', context)
