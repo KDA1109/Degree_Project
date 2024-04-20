@@ -1,10 +1,24 @@
 from django.shortcuts import render
+from goodsapp.models import Products
 
 
 def catalog(request):
-    return render(request, 'goodsapp/catalog.html')
+    goods = Products.objects.all()
+
+    context = {
+        "title": "SportHub - Каталог",
+        "goods": goods,
+        # "slug_url": category_slug
+    }
+    return render(request, 'goodsapp/catalog.html', context)
     
 
 def product(request):
-    return render(request, 'goodsapp/product.html')
+    product = Products.objects.get(slug=product_slug)
+
+    context = {
+        'product': product
+    }
+
+    return render(request, 'goodsapp/product.html', context)
 

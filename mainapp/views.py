@@ -1,9 +1,15 @@
 from django.shortcuts import render
 
+from goodsapp.models import Categories
+
 def index(request):
+
+    categories = Categories.objects.all()
+
     context = {
         'title': 'SportHub - Главная',
-        'content': 'Спорт - наше всё! SportHub знает об этом лучше всех!'
+        'content': 'Спорт - наше всё! SportHub знает об этом лучше всех!',
+        'categories': categories
     }
 
     return render(request, 'mainapp/index.html', context)
