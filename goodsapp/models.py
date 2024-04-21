@@ -1,18 +1,17 @@
 from django.db import models
 
 class Categories(models.Model):
-    name = models.CharField(max_length=150, unique=True)
-    slug = models.SlugField(max_length=250, unique=True, blank=True, null=True)
+    name = models.CharField(max_length=150, unique=True, verbose_name='Название')
+    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
 
     class Meta:
         db_table = 'category'
         verbose_name = 'Категорию'
         verbose_name_plural = 'Категории'
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
-
-
+    
 class Products(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
@@ -21,7 +20,7 @@ class Products(models.Model):
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
     discount = models.DecimalField(default=0.00, max_digits=4, decimal_places=2, verbose_name='Скидка в %')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
-    category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')    
+    category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')    # protect - не даст удалить категорию если в ней есть не закончившиеся товары
 
     class Meta:
         db_table = 'product'
@@ -29,11 +28,11 @@ class Products(models.Model):
         verbose_name_plural = 'Товары'
         ordering = ('id',)
 
-    def __str__(self) -> str:
-        return f'{self.name} Количество - {self.quantity}'
+    def __str__(self):
+        return f'{self.name} Количество - {self.quantity}' 
     
     def display_id(self):
-        return f'{self.id:05}' 
+        return f"{self.id:05}"
     
     def sell_price(self):
         if self.discount:
