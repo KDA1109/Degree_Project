@@ -1,4 +1,3 @@
-#from django.core.paginator import Paginator
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_list_or_404
 from goodsapp.models import Categories, Products
