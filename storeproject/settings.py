@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'mainapp',
     'goodsapp',
+    'usersapp',
     
     
 
@@ -68,7 +69,7 @@ ROOT_URLCONF = 'storeproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
