@@ -50,17 +50,13 @@ body {
 }
 
 .navbar-brand {
-  font-family: 'Your Chosen Font', sans-serif;
-  /* Замените 'Your Chosen Font' на название выбранного вами шрифта */
-  font-weight: bold; /* Настройка жирности шрифта, при необходимости */
-  font-size: 24px; /* Настройка размера шрифта, при необходимости */
-  /* Дополнительные стили, если нужно */
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold; 
+  font-size: 25px; 
 }
 
-.navbar-brand {
+.navbar {
   font-family: 'Roboto', sans-serif;
-  /* Замените 'Your Chosen Font' на название выбранного вами шрифта */
-  font-weight: bold; /* Настройка жирности шрифта, при необходимости */
-  font-size: 24px; /* Настройка размера шрифта, при необходимости */
-  /* Дополнительные стили, если нужно */
+  font-weight: bold; 
+  font-size: 20px;
 }
