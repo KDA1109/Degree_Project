@@ -13,7 +13,7 @@
                 Фильтры
             </button>
     
-            <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index" slug_url %}{% endif %}
+            <form action="{% if request.GET.q %}{% url "goodsapp:search" %}{% else %}{% url "goodsapp:index" slug_url %}{% endif %}
             " method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
                 <div class="form-check text-white mx-3">
                     <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" 
@@ -62,7 +62,7 @@
                 {% endif %}
                 <div class="card-body">
                     <!--Обратное разрешение url адресов.-->
-                    <a href="{% url "catalog:product" product.slug %}">    
+                    <a href="{% url "goodsapp:product" product.slug %}">    
                         <p class="card-title">{{ product.name }}</p>
                     </a>
                     <p class="card-text">{{ product.description|truncatechars:55 }}</p>
@@ -115,9 +115,9 @@
 
 
 {% block footer %}
-<footer class="py-4 bg-dark">
+<footer class="py-4 bg-primary">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; SportHub Store 2024</p>
+        <p class="m-0 text-center text-white">&copy; 2024 SportHub. Все права защищены.</p>
     </div>
 </footer>
 {% endblock  %}

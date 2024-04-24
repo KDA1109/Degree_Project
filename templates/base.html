@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "deps/css/bootstrap/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "deps/css/style.css" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+
     <!-- Стиль footer-a для главной страницы -->
     {% block css %}
     
@@ -25,9 +27,9 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="primary>
             <div class="container">
-                <a class="navbar-brand" href="{% url "mainapp:index" %}">SportHub</a>
+                <a class="navbar-brand ms-2" href="{% url "mainapp:index" %}">SportHub</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -41,35 +43,48 @@
                                 Информация
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="#">Доставка и оплата</a></li>
-                                <li><a class="dropdown-item  text-white" href="{% url "mainapp:about" %}">О нас</a></li>
+                                <li><a class="dropdown-item  text-bg-black" href="#">Доставка и оплата</a></li>
+                                <li><a class="dropdown-item  text-bg-black" href="{% url "mainapp:about" %}">О нас</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-white" href="carts/cart.html">Корзина</a>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Каталог
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% tag_categories as categories %}
+                                {% for category in categories %}
+                                    <li><a class="dropdown-item text-bg-black" href="{% url "goodsapp:index" category.slug %}">{{ category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
                         </li>
+                        {% if not user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href="{% url "user:login" %}">Войти</a>
+                            <a class="nav-link  text-white" href="{% url "usersapp:login" %}">Вход/Регистрация</a>
                         </li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Мой профиль
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="carts/cart.html">Корзина</a></li>
-                                <li><a class="dropdown-item  text-white" href="{% url "user:profile" %}">Личный кабинет</a>
+                                <li><a class="dropdown-item  text-bg-black" href="carts/cart.html">Корзина</a></li>
+                                <li><a class="dropdown-item  text-bg-black" href="{% url "usersapp:profile" %}">Личный кабинет</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item  text-white" href="{% url "user:logout" %}">Выйти</a></li>
+                                <li><a class="dropdown-item  text-bg-black" href="{% url "usersapp:logout" %}">Выйти</a></li>
                             </ul>
                         </li>
+                        {% endif %}
                     </ul>
-                    <form class="d-flex" role="search" action='{% url "catalog:search" %}' method='get'>
+                    <form class="d-flex" role="search" action='{% url "goodsapp:search" %}' method='get'>
                         <input class="form-control me-2" type="search" name='q' placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success text-white" type="submit">Поиск</button>
+                        <button class="btn btn-outline-success text-white" type="submit" style="margin-right: 20px;">Поиск</button>
                     </form>
                 </div>
             </div>
@@ -77,26 +92,13 @@
     </header>
     <section>
         <div class="container">
-            <!-- Каталог и корзина с фиксированным расположением на странице -->
+            <!-- Значек корзина на странице -->
+            {% if user.is_authenticated %}
             <div class="row mt-1 position-fixed z-3">
-                <!-- Каталог -->
-                <div class="dropdown mb-2">
-                    <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Каталог
-                        <img class="mx-1" src="{% static "deps/icons/grid-fill.svg" %}" alt="Catalog Icon" width="16"
-                            height="16">
-                    </button>
-                    <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-                        {% tag_categories as categories %}
-                        {% for category in categories %}
-                            <li><a class="dropdown-item text-white" href="{% url "catalog:index" category.slug %}">{{ category.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                
                 <!-- Значек корзины, вызывает модальное окно -->
                 <div>
-                    <button type="button" class="btn btn-dark btn-secondary d-flex" id="modalButton"
+                    <button type="button" class="btn btn-primary btn-secondary d-flex" id="modalButton"
                         aria-expanded="false">
                         <img class="mx-1" src="{% static "deps/icons/basket2-fill.svg" %}" alt="Catalog Icon" width="24"
                             height="24">
@@ -168,6 +170,7 @@
                 </div>
                 <!-- Закончилась разметка модального окна -->
             </div>
+            {% endif %}
         </div>
         <!-- Контент -->
         <div class="container">
@@ -190,6 +193,7 @@
     <script src="{% static "deps/js/jquery-events.js" %}"></script>
     <script src="{% static "deps/js/jquery-ajax.js" %}"></script>
     <script src="{% static "deps/js/bootstrap/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "deps/js/password-toggle.js" %}"></script>
 </body>
 
 </html>

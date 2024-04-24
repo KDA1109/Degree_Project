@@ -36,3 +36,31 @@ body {
   border-radius: 15px;
   font-size: 0.7rem;
 }
+
+
+/* Изменение вида курсора при наведении на блок */
+.nav-item.dropdown:hover {
+  cursor: pointer;
+}
+
+/* Изменение цвета фона и текста в поле для ввода поиска */
+.form-control {
+  background-color: #ffffff; /* Белый фон */
+  color: #000000; /* Черный текст */
+}
+
+.navbar-brand {
+  font-family: 'Your Chosen Font', sans-serif;
+  /* Замените 'Your Chosen Font' на название выбранного вами шрифта */
+  font-weight: bold; /* Настройка жирности шрифта, при необходимости */
+  font-size: 24px; /* Настройка размера шрифта, при необходимости */
+  /* Дополнительные стили, если нужно */
+}
+
+.navbar-brand {
+  font-family: 'Roboto', sans-serif;
+  /* Замените 'Your Chosen Font' на название выбранного вами шрифта */
+  font-weight: bold; /* Настройка жирности шрифта, при необходимости */
+  font-size: 24px; /* Настройка размера шрифта, при необходимости */
+  /* Дополнительные стили, если нужно */
+}
