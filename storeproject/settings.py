@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'mainapp',
     'goodsapp',
     'usersapp',
+    'cartsapp',
     
     
 
@@ -152,3 +153,4 @@ INTERNAL_IPS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'usersapp.User'
+LOGIN_URL = '/user/login/'

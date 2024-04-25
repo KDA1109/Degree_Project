@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import UserLoginForm, UserSignupForm, ProfileForm
 from django.contrib.auth.decorators import login_required
+from cartsapp.models import Cart
 
 
 def login(request):
@@ -17,6 +18,10 @@ def login(request):
             if user is not None:
                 auth.login(request, user)
                 messages.success(request, f'{username} Вы вошли в аккаунт.')
+                
+                redirect_page = request.POST.get('next', None)
+                if redirect_page and redirect_page != reverse('usersapp:logout'):
+                    return HttpResponseRedirect(reverse('mainapp:index'))
                 return HttpResponseRedirect(reverse('mainapp:index'))
     else:
         form = UserLoginForm()
@@ -68,3 +73,7 @@ def logout(request):
     messages.success(request, f'{request.user.username} Вы вышли из аккаунта.')
     auth.logout(request)
     return redirect(reverse('mainapp:index'))
+
+
+def user_cart(request):
+    return render(request, 'usersapp/users_cart.html')
