@@ -15,6 +15,8 @@ def index(request):
     return render(request, 'mainapp/index.html', context)
 
 def about(request):
+
+    
     context = {
         'title': 'SportHub - О нас',
         'content': 'О нас',

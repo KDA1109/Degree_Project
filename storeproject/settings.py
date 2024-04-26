@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'goodsapp',
     'usersapp',
     'cartsapp',
+    'ordersapp',
     
     
 

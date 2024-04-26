@@ -92,7 +92,7 @@
                             <!-- Закончилась разметка корзины -->
                         </div>
                         {% if carts %}
-                            <a class="btn btn-primary" href="#">Оформить заказ</a>
+                            <a class="btn btn-primary" href="{% url "ordersapp:create_order" %}">Оформить заказ</a>
                         {% endif %}
                     </div>
                 </div>
